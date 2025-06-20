@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AES Steganography Tool</title>
+    <link rel="icon" type="image/png" href="icon.png">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+</head>
+<body>
+    
+    <div class="container">
+        <h1>Encrypt Text in Images</h1>
+        <div class="tab">
+            <button class="tablinks" onclick="openTab(event, 'hideTab')">Hide Message in Image</button>
+            <button class="tablinks" onclick="openTab(event, 'extractTab')">Extract Message from Image</button>
+        </div>
+
+        <div id="hideTab" class="tabcontent">
+            <div class="row-container">
+                <div class="section left-section">
+                    <textarea id="secretMessage" placeholder="Enter your secret message here"></textarea>
+                    <p id="hideStatus" class="status" style="display: none;"></p>
+
+         
+                    <div class="input-with-copy">
+                        <input type="text" id="encryptionKey" placeholder="Enter encryption key">
+                        <button class="copy-btn" onclick="copyEncryptionKey()">Copy</button>
+                    </div>
+                    <button onclick="generateRandomKey()">Generate Key</button>
+                    <button onclick="hideMessageInImage()">Encrypt Message</button>
+                </div>
+
+                <div class="section right-section">
+                    <div class="image-upload-area">
+                        <label for="originalImage">
+                            <input type="file" id="originalImage" accept="image/png, image/jpeg">
+                            <div class="upload-content">
+                                <div class="upload-icon">↑</div>
+                                <div class="upload-text">Click to upload image</div>
+                            </div>
+                        </label>
+                        <img id="imagePreview" style="display: none;">
+                    </div>
+                    
+                    <div class="encrypted-image-area">
+                        <img id="encryptedImagePreview" style="display: none;">
+                    </div>
+                    <button id="downloadEncryptedImage" style="display: none;" onclick="downloadEncryptedImage()">Download Image with Hidden Message</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="extractTab" class="tabcontent">
+            <div class="row-container">
+                <div class="section left-section">
+                   
+                    <div class="image-upload-area">
+                        <label for="modifiedImage">
+                            <input type="file" id="modifiedImage" accept="image/png, image/jpeg">
+                            <div class="upload-content">
+                                <div class="upload-icon">↑</div>
+                                <div class="upload-text">Click to upload modified image</div>
+                            </div>
+                        </label>
+                        <img id="extractImagePreview" style="display: none;">
+                    </div>
+                    <p id="extractStatus" class="status" style="display: none;"></p>
+                    <p>
+                        Muhammad Syah Bin Razak (AM2412018244)
+                        <br>NCW3193/NWC3373
+                        <br>SECTION 1
+                        <br>FUNDAMENTAL OF CRYPTOGRAPHY
+                        <br>Individual Project
+                        <br>SIR MOHD AKMAL BIN MOHD AZMER
+                    </p>
+                </div>
+
+                <div class="section right-section">
+                    
+                    <input type="text" id="extractKey" placeholder="Enter encryption key">
+
+                    
+                    <button onclick="extractMessageFromImage()">Extract and Decrypt Message</button>
+
+                    <div id="extractedMessageSection" style="display: none;">
+                        <h3>Extracted Secret Message:</h3>
+                        <textarea id="extractedMessage" readonly></textarea>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
